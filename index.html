@@ -78,19 +78,16 @@
             background-color: #006699;
         }
 
-        /* Стили для стрелки "Вверх" */
+        /* Стили для стрелочки "Вверх" */
         .scroll-to-top {
             display: none;
             position: fixed;
             bottom: 20px;
             right: 20px;
+            width: 40px;
+            height: 40px;
             background-color: #0088cc;
-            color: #fff;
-            border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -102,6 +99,19 @@
             display: block;
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .scroll-to-top::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 15px solid #fff;
+            transform: translate(-50%, -50%);
         }
 
         .scroll-to-top:hover {
@@ -232,14 +242,14 @@
         </main>
     </div>
 
-    <!-- Стрелка для прокрутки вверх -->
-    <button class="scroll-to-top" id="scrollToTop" title="Наверх">↑</button>
+    <!-- Стрелочка для прокрутки вверх -->
+    <div class="scroll-to-top" id="scrollToTop" title="Наверх"></div>
 
     <script>
-        // Логика для стрелки "Вверх"
+        // Логика для стрелочки "Вверх"
         const scrollToTopButton = document.getElementById('scrollToTop');
 
-        // Показать/скрыть стрелку при прокрутке
+        // Показать/скрыть стрелочку при прокрутке
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 scrollToTopButton.classList.add('show');
@@ -248,7 +258,7 @@
             }
         });
 
-        // Плавная прокрутка вверх при нажатии на стрелку
+        // Плавная прокрутка вверх при нажатии на стрелочку
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
